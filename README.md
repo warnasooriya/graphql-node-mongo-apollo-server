@@ -60,47 +60,55 @@ Ensure you have the following installed on your system:
 
 ### Example Queries
 
-#### Fetch All Items
+#### Fetch a Single Recipe by ID
 ```graphql
 query {
-  items {
-    id
-    name
-    description
-  }
+    receipe(ID: "12345") {
+        name
+        description
+        createdAt
+        thumbsUp
+        thumbsDown
+    }
 }
 ```
 
-#### Add a New Item
+#### Fetch Multiple Recipes
 ```graphql
-mutation {
-  addItem(input: { name: "Sample Item", description: "This is a sample item." }) {
-    id
-    name
-    description
-  }
+query {
+    getReceipes(amount: 5) {
+        name
+        description
+        createdAt
+    }
 }
 ```
 
 ### Example Mutations
 
-#### Update an Item
+#### Create a New Recipe
 ```graphql
 mutation {
-  updateItem(id: "<item-id>", input: { name: "Updated Item", description: "Updated description." }) {
-    id
-    name
-    description
-  }
+    createReceipe(receipeInput: {name: "Pasta", description: "Delicious homemade pasta"}) {
+        name
+        description
+        createdAt
+    }
 }
 ```
 
-#### Delete an Item
+#### Update a Recipe
 ```graphql
 mutation {
-  deleteItem(id: "<item-id>") {
-    id
-  }
+    editReceipe(ID: "12345", receipeInput: {name: "Updated Pasta", description: "Updated description"}) 
+}
+```
+
+
+#### Delete a Recipe
+```graphql
+mutation {
+    deleteReceipe(ID: "12345")
 }
 ```
 
